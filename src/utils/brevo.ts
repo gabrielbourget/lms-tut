@@ -1,13 +1,15 @@
 import axios from "axios";
-import { SendEmailOptions } from "payload";
+import type { EmailAdapter, SendEmailOptions } from "payload";
 
 const {
   BREVO_EMAILS_ACTIVE, BREVO_API_KEY, BREVO_SENDER_NAME, BREVO_SENDER_EMAIL
 } = process.env;
 
-const brevoAdapter = () => {
+const brevoAdapter = (): EmailAdapter => {
   const adapter = () => ({
     name: "Brevo",
+    defaultFromName: BREVO_SENDER_NAME as string,
+    defaultFromAddress: BREVO_SENDER_EMAIL as string,
     sendEmail: async (message: SendEmailOptions): Promise<unknown> => {
       if (!BREVO_EMAILS_ACTIVE) {
         console.warn("Email sending is disabled.");
