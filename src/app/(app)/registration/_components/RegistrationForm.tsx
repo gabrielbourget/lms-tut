@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState, FormEvent, ReactElement } from "react";
 import Link from "next/link";
 import { registration, RegistrationResponse } from "../_actions/registration";
-import SubmitButton from "@/app/(app)/components/SubmitButton";
+import SubmitButton from "@/app/(app)/_components/SubmitButton";
 
 export default function RegistrationForm(): ReactElement {
   const [isPending, setIsPending] = useState(false);
