@@ -10,7 +10,7 @@ type LoginParams = {
   password: string;
 }
 
-type LoginResponse = {
+export type LoginResponse = {
   success: boolean;
   error?: string;
 }
@@ -19,6 +19,7 @@ export type Result = {
   exp?: number;
   token?: string;
   user?: Customer;
+  error?: string;
 }
 
 export async function login({email, password}: LoginParams): Promise<LoginResponse> {
