@@ -47,6 +47,10 @@ const LoginForm = (): ReactElement => {
 
           <SubmitButton text="Login" loading={isPending} />
         </form>
+
+        <p className="mt-10 text-center text-sm text-gray-400">
+          Don&apos;t have an account? <a href="/registration" className="text-blue-500">Sign Up</a>
+        </p>
       </div>
     </div>
   );
