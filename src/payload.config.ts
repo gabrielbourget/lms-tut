@@ -1,16 +1,22 @@
 // storage-adapter-import-placeholder
-import { mongooseAdapter } from '@payloadcms/db-mongodb'
-import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import path from 'path'
-import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
-import sharp from 'sharp'
-import { s3Storage } from '@payloadcms/storage-s3'
+import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import path from "path";
+import { buildConfig } from "payload";
+import { fileURLToPath } from "url";
+import sharp from "sharp";
+import { s3Storage } from "@payloadcms/storage-s3";
 
-import { Users } from './collections/Users'
-import { Media } from './collections/Media'
-import brevoAdapter from './utils/brevo'
+import { Users } from "./collections/Users";
+import { Media } from "./collections/Media";
+import { Customers } from "./collections/Customers";
+import brevoAdapter from "./utils/brevo";
+
+const {
+  PAYLOAD_SECRET, DATABASE_URI, S3_BUCKET_NAME, S3_BUCKET_REGION, S3_BUCKET_ENDPOINT,
+  S3_BUCKET_ACCESS_KEY, S3_BUCKET_SECRET_KEY
+} = process.env;
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,14 +29,14 @@ export default buildConfig({
     },
   },
   email: brevoAdapter(),
-  collections: [Users, Media],
+  collections: [Users, Media, Customers],
   editor: lexicalEditor(),
-  secret: process.env.PAYLOAD_SECRET || '',
+  secret: PAYLOAD_SECRET || "",
   typescript: {
-    outputFile: path.resolve(dirname, 'payload-types.ts'),
+    outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI || '',
+    url: DATABASE_URI || "",
   }),
   sharp,
   plugins: [
@@ -39,16 +45,15 @@ export default buildConfig({
       collections: {
         media: true
       },
-      bucket: process.env.S3_BUCKET_NAME || "",
+      bucket: S3_BUCKET_NAME || "",
       config: {
-        region: process.env.S3_BUCKET_REGION || "",
-        endpoint: process.env.S3_BUCKET_ENDPOINT || "",
+        region: S3_BUCKET_REGION || "",
+        endpoint: S3_BUCKET_ENDPOINT || "",
         credentials: {
-          accessKeyId: process.env.S3_BUCKET_ACCESS_KEY || "",
-          secretAccessKey: process.env.S3_BUCKET_SECRET_KEY || "",
+          accessKeyId: S3_BUCKET_ACCESS_KEY || "",
+          secretAccessKey: S3_BUCKET_SECRET_KEY || "",
         },
       }
     })
-    // storage-adapter-placeholder
   ],
-})
+});
