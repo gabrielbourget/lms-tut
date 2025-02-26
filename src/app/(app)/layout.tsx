@@ -8,7 +8,7 @@ type TRootLayoutProps = {
 export default function RootLayout({ children }: TRootLayoutProps) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-black text-white">
         {children}
       </body>
     </html>
