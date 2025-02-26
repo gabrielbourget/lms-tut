@@ -1,7 +1,8 @@
 import { redirect } from "next/navigation";
 import React, { type FC, type ReactNode } from "react";
 
-import { getUser } from "./actions/getUser";
+import { getUser } from "./_actions/getUser";
+import Navbar from "./_components/NavBar";
 
 type LayoutProps = {
   children: ReactNode;
@@ -16,9 +17,10 @@ const Layout: FC<LayoutProps> = async ({ children }) => {
   }
 
   return (
-    <>
+    <div>
+      <Navbar />
       {children}
-    </>
+    </div>
   );
 };
 
