@@ -21,3 +21,5 @@ const Layout: FC<LayoutProps> = async ({ children }) => {
     </>
   );
 };
+
+export default Layout;
