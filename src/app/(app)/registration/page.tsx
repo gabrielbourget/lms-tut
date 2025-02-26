@@ -1,4 +1,4 @@
-import RegistrationForm from "./components/RegistrationForm"
+import RegistrationForm from "./_components/RegistrationForm"
 
 const page = async () => {
   return (
@@ -8,4 +8,4 @@ const page = async () => {
   )
 }
 
-export default page
+export default page;

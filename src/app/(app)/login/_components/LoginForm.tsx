@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { type FormEvent, useState, type ReactElement } from "react";
 import SubmitButton from "@/app/(app)/components/SubmitButton";
-import { login, LoginResponse } from "../actions/login";
+import { login, LoginResponse } from "../_actions/login";
 
 const LoginForm = (): ReactElement => {
   const [isPending, setIsPending] = useState(false);

@@ -3,10 +3,10 @@
 import { useRouter } from "next/navigation";
 import { useState, FormEvent, ReactElement } from "react";
 import Link from "next/link";
-import { registration, RegistrationResponse } from "../actions/registration";
+import { registration, RegistrationResponse } from "../_actions/registration";
 import SubmitButton from "@/app/(app)/components/SubmitButton";
 
-export default function SignupForm(): ReactElement {
+export default function RegistrationForm(): ReactElement {
   const [isPending, setIsPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -44,7 +44,7 @@ export default function SignupForm(): ReactElement {
   return (
     <div className="flex gap-8 min-h-full flex-col justify-center items-center">
       <div className="text-3xl">
-        Sign Up
+        Registration
       </div>
       <div className="w-full mx-auto sm:max-w-sm">
         <form className="flex flex-col gap-4" onSubmit={onSubmit}>
@@ -83,7 +83,7 @@ export default function SignupForm(): ReactElement {
 
           {error && <div className="text-red-500">{error}</div>}
 
-          <SubmitButton loading={isPending} text="Sign Up" />
+          <SubmitButton loading={isPending} text="Register" />
         </form>
 
         <p className="mt-4 text-center text-sm text-gray-400">
