@@ -6,8 +6,16 @@ export const Customers: CollectionConfig = {
     useAsTitle: "email",
   },
   auth: true,
-  fields: [],
   access: {
     create: () => true
-  }
+  },
+  fields: [
+    {
+      name: "participation",
+      label: "Participation",
+      type: "relationship",
+      relationTo: "courses",
+      hasMany: true
+    }
+  ],
 }

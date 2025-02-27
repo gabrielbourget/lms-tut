@@ -4,6 +4,12 @@ import { QuizBLock } from "./blocks/QuizBlock";
 
 export const Courses: CollectionConfig = {
   slug: "courses",
+  access: {
+    read: ({ req: { user }}) => Boolean(user),
+    create: ({ req: { user }}) =>  user?.collection === "users",
+    update: ({ req: { user }}) => user?.collection === "users",
+    delete: ({ req: { user }}) => user?.collection === "users",
+  },
   admin: {
     useAsTitle: "title",
   },

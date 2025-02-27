@@ -2,6 +2,21 @@ import { CollectionConfig } from "payload";
 
 export const Participation: CollectionConfig = {
   slug: "participation",
+  access: {
+    read: ({ req: { user }}) => ({ customer: { equals: user?.id }}),
+    create: ({ req: { user }, data}) => {
+      if (user?.collection === "users") {
+        return true;
+      } else if (user?.collection === "customers" && data?.customer === user?.id) {
+        return true;
+      } else return false;
+    },
+    update: ({ req: { user }}) => ({ customer: { equals: user?.id }}),
+    delete: ({ req: { user }}) => ({ customer: { equals: user?.id }}),
+  },
+  admin: {
+    useAsTitle: ""
+  },
   fields: [
     {
       name: "customer",
@@ -21,7 +36,6 @@ export const Participation: CollectionConfig = {
       name: "progress",
       label: "Progress",
       type: "number",
-      required: true
     }
   ]
 }
