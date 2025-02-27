@@ -13,6 +13,7 @@ import { Media } from "./collections/Media";
 import { Customers } from "./collections/Customers";
 import { Courses } from "./collections/Courses/Courses";
 import brevoAdapter from "./utils/brevo";
+import { Participation } from "./collections/Courses/Participation";
 
 const {
   PAYLOAD_SECRET, DATABASE_URI, S3_BUCKET_NAME, S3_BUCKET_REGION, S3_BUCKET_ENDPOINT,
@@ -30,7 +31,7 @@ export default buildConfig({
     },
   },
   email: brevoAdapter(),
-  collections: [Users, Media, Customers, Courses],
+  collections: [Users, Media, Customers, Courses, Participation],
   editor: lexicalEditor(),
   secret: PAYLOAD_SECRET || "",
   typescript: {
