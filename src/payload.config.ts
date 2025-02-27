@@ -11,6 +11,7 @@ import { s3Storage } from "@payloadcms/storage-s3";
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Customers } from "./collections/Customers";
+import { Courses } from "./collections/Courses/Courses";
 import brevoAdapter from "./utils/brevo";
 
 const {
@@ -29,7 +30,7 @@ export default buildConfig({
     },
   },
   email: brevoAdapter(),
-  collections: [Users, Media, Customers],
+  collections: [Users, Media, Customers, Courses],
   editor: lexicalEditor(),
   secret: PAYLOAD_SECRET || "",
   typescript: {
