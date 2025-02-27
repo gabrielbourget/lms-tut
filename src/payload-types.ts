@@ -146,7 +146,33 @@ export interface Course {
   title: string;
   description: string;
   image: string | Media;
-  curriculum?: unknown[] | null;
+  curriculum?:
+    | (
+        | {
+            title: string;
+            duration: string;
+            playerUrl: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'video';
+          }
+        | {
+            title: string;
+            questions: {
+              question: string;
+              answers: {
+                answer: string;
+                correct: boolean;
+                id?: string | null;
+              }[];
+              id?: string | null;
+            }[];
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quiz';
+          }
+      )[]
+    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -281,7 +307,39 @@ export interface CoursesSelect<T extends boolean = true> {
   title?: T;
   description?: T;
   image?: T;
-  curriculum?: T | {};
+  curriculum?:
+    | T
+    | {
+        video?:
+          | T
+          | {
+              title?: T;
+              duration?: T;
+              playerUrl?: T;
+              id?: T;
+              blockName?: T;
+            };
+        quiz?:
+          | T
+          | {
+              title?: T;
+              questions?:
+                | T
+                | {
+                    question?: T;
+                    answers?:
+                      | T
+                      | {
+                          answer?: T;
+                          correct?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
 }

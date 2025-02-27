@@ -1,4 +1,6 @@
 import { CollectionConfig } from "payload";
+import { VideoBlock } from "./blocks/VideoBlock";
+import { QuizBLock } from "./blocks/QuizBlock";
 
 export const Courses: CollectionConfig = {
   slug: "courses",
@@ -29,7 +31,7 @@ export const Courses: CollectionConfig = {
       name: "curriculum",
       label: "Curriculum",
       type: "blocks",
-      blocks: [],
+      blocks: [VideoBlock, QuizBLock],
     }
   ]
 }
